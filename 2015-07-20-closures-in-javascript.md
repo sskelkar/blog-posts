@@ -44,4 +44,4 @@ First we have a variable declaration in the global scope. Then we have an **imme
 
 After the anonymous function definition, we immediately call it and pass 2. This value is now bound to the inner function. Each time we call `doublify`, 2 is multiplied to the parameter passed to it.
 
-For someone coming from OOP background, a similarity between closures and objects will be immediately noticeable. Indeed, closures have been called as poor man’s objects [and vice-versa](https://news.ycombinator.com/item?id=926140)! In fact when we create a class in TypeScript, it gets translated into a JavaScript closure.
+For someone coming from OOP background, a similarity between closures and objects will be immediately noticeable. Indeed, closures have been called as poor man’s objects [and vice-versa](https://news.ycombinator.com/item?id=926140)! 

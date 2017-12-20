@@ -9,7 +9,7 @@ public class EmptyWhileLoop {
   }
 }
 ```
-![VisualVM output](https://github.com/sskelkar/blog-posts/images/memory-profiling-1.png)
+![VisualVM output](https://github.com/sskelkar/blog-posts/raw/master/images/memory-profiling-1.png)
 
 Alternatively, `jstat` can give us periodical information on a wide range of parameters like garbage collection statistics, heap capacities, class compilation etc.
 
@@ -24,7 +24,7 @@ jstat -gcutil 410 500 10
 It will print garbage collection statistics of the JVM running with `pid` 410 every 0.5 second, 10 times. If we don’t give the `count` option, `jstat` will run till the process exits. `pid` of an application can be found using `jps` command.
 
 For above code, `jstat -util` will give the output as following:
-![jstat output](https://github.com/sskelkar/blog-posts/images/memory-profiling-2.png)
+![jstat output](https://github.com/sskelkar/blog-posts/raw/master/images/memory-profiling-1.png)
 The meaning of each column can be found in the official [Oracle documentation](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html).
 
 Now let's consider a simple example of creating an ArrayList with and without providing `initialCapacity`. If we do not provide `initialCapacity` to the ArrayList constructor, by default it creates an internal array of initial size 10. As we add elements to this ArrayList and exceed this size, a new internal array with size as 1.5 times the old size is created and values from old array are copied to the new one. If we add large number of values to an ArrayList but do not initialize it, the internal array will have to be resized several times over, and the discarded array objects go up for garbage collection. So an application that does not initialize ArrayList is going to consume much more memory than the one that does. We can verify this by running the JVM with `-verbose:gc` option.
